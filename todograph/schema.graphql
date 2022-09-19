@@ -1,0 +1,7 @@
+type Todo @entity {
+  id: ID!
+  creator: Bytes! # address
+  todoId: BigInt! # uint256
+  todoTask: String!
+  isCompleted: Boolean
+}

@@ -1,0 +1,26 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: TodoContract
+    network: mumbai
+    source:
+      address: "0x0FDA0F6739DF162B9124090Ea5F4FB17df56e46e"
+      abi: TodoContract
+      startBlock: 28156118
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Todo
+      abis:
+        - name: TodoContract
+          file: ./abis/TodoContract.json
+      eventHandlers:
+        - event: AddTodo(address,uint256,string,bool)
+          handler: handleAddTodo
+        - event: ToggleCompletedStatus(uint256,bool)
+          handler: handleToggleCompletedStatus
+      file: ./src/todo-contract.ts
